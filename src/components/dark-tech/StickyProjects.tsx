@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, MotionValue } from "framer-motion";
 import { ExternalLink, Github, Eye, X, ArrowUpRight } from "lucide-react";
+import { assetUrl } from "@/utils/assetUrl";
 
 interface ProjectData {
   number: string;
@@ -26,9 +27,9 @@ const PROJECTS: ProjectData[] = [
     liveUrl: "https://legendx143.github.io/PortFolio",
     githubUrl: "https://github.com/Legendx143/PlantGuardian",
     images: {
-      col1Top: "/images/PlantGuardian/Screenshot 2026-11-04 121013.png",
-      col1Bottom: "/images/PlantGuardian/Screenshot 2026-11-04 121610.png",
-      col2Tall: "/images/PlantGuardian/Screenshot 2026-11-04 121724.png",
+      col1Top: assetUrl("/images/PlantGuardian/Screenshot 2026-11-04 121013.png"),
+      col1Bottom: assetUrl("/images/PlantGuardian/Screenshot 2026-11-04 121610.png"),
+      col2Tall: assetUrl("/images/PlantGuardian/Screenshot 2026-11-04 121724.png"),
     },
     metrics: ["98.2% Accuracy", "FastAPI Core", "ResNet50 Vision"],
   },
@@ -40,9 +41,9 @@ const PROJECTS: ProjectData[] = [
     liveUrl: "https://legendx143.github.io/PortFolio",
     githubUrl: "https://github.com/Legendx143/PetCare",
     images: {
-      col1Top: "/images/PetCare/a.png",
-      col1Bottom: "/images/PetCare/Screenshot (884).png",
-      col2Tall: "/images/PetCare/Screenshot (885).png",
+      col1Top: assetUrl("/images/PetCare/a.png"),
+      col1Bottom: assetUrl("/images/PetCare/Screenshot (884).png"),
+      col2Tall: assetUrl("/images/PetCare/Screenshot (885).png"),
     },
     metrics: ["Sound + Vision", "Differential Triage", "Real-Time Audio"],
   },
@@ -54,9 +55,9 @@ const PROJECTS: ProjectData[] = [
     liveUrl: "https://legendx143.github.io/PortFolio",
     githubUrl: "https://github.com/Legendx143/HumanSignal",
     images: {
-      col1Top: "/images/HumanSignal/a.png",
-      col1Bottom: "/images/HumanSignal/b.png",
-      col2Tall: "/images/HumanSignal/c.png",
+      col1Top: assetUrl("/images/HumanSignal/a.png"),
+      col1Bottom: assetUrl("/images/HumanSignal/b.png"),
+      col2Tall: assetUrl("/images/HumanSignal/c.png"),
     },
     metrics: ["Zero PII Storage", "Temporal Micro-Dynamics", "Browser Agnostic"],
   },

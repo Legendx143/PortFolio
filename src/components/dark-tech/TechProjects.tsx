@@ -17,6 +17,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { TRANSITION_APPLE, TRANSITION_SPRING } from "@/lib/animations";
+import { assetUrl } from "@/utils/assetUrl";
 
 export const TechProjects: React.FC = () => {
   const [plantImgIdx, setPlantImgIdx] = useState(0);
@@ -30,26 +31,26 @@ export const TechProjects: React.FC = () => {
   });
 
   const plantImages = [
-    "/images/PlantGuardian/Screenshot 2026-11-04 121013.png",
-    "/images/PlantGuardian/Screenshot 2026-11-04 121610.png",
-    "/images/PlantGuardian/Screenshot 2026-11-04 121724.png",
-    "/images/PlantGuardian/Screenshot 2026-11-04 121810.png",
-    "/images/PlantGuardian/Screenshot 2026-11-04 121844.png",
-    "/images/PlantGuardian/Screenshot 2026-11-04 121922.png",
+    assetUrl("/images/PlantGuardian/Screenshot 2026-11-04 121013.png"),
+    assetUrl("/images/PlantGuardian/Screenshot 2026-11-04 121610.png"),
+    assetUrl("/images/PlantGuardian/Screenshot 2026-11-04 121724.png"),
+    assetUrl("/images/PlantGuardian/Screenshot 2026-11-04 121810.png"),
+    assetUrl("/images/PlantGuardian/Screenshot 2026-11-04 121844.png"),
+    assetUrl("/images/PlantGuardian/Screenshot 2026-11-04 121922.png"),
   ];
 
   const petImages = [
-    "/images/PetCare/a.png",
-    "/images/PetCare/Screenshot (884).png",
-    "/images/PetCare/Screenshot (885).png",
-    "/images/PetCare/Screenshot (886).png",
-    "/images/PetCare/Screenshot (887).png",
+    assetUrl("/images/PetCare/a.png"),
+    assetUrl("/images/PetCare/Screenshot (884).png"),
+    assetUrl("/images/PetCare/Screenshot (885).png"),
+    assetUrl("/images/PetCare/Screenshot (886).png"),
+    assetUrl("/images/PetCare/Screenshot (887).png"),
   ];
 
   const humanImages = [
-    "/images/HumanSignal/a.png",
-    "/images/HumanSignal/b.png",
-    "/images/HumanSignal/c.png",
+    assetUrl("/images/HumanSignal/a.png"),
+    assetUrl("/images/HumanSignal/b.png"),
+    assetUrl("/images/HumanSignal/c.png"),
   ];
 
   return (

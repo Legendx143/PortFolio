@@ -8,6 +8,7 @@ import {
   FileText,
 } from "lucide-react";
 import { TRANSITION_SPRING } from "@/lib/animations";
+import { assetUrl } from "@/utils/assetUrl";
 
 interface CommandLog {
   id: string;
@@ -228,7 +229,7 @@ export const TechAbout: React.FC = () => {
 
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <img
-                    src="/images/Myself1.png"
+                    src={assetUrl("/images/Myself1.png")}
                     alt="Supriyo Halder"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -367,7 +368,7 @@ export const TechAbout: React.FC = () => {
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 pt-1">
               <motion.a
-                href="/My_Resume.pdf"
+                href={assetUrl("/My_Resume.pdf")}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.04, y: -2 }}

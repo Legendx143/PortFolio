@@ -10,6 +10,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { TRANSITION_SPRING } from "@/lib/animations";
+import { assetUrl } from "@/utils/assetUrl";
 
 export const TechExperience: React.FC = () => {
   return (
@@ -69,7 +70,7 @@ export const TechExperience: React.FC = () => {
 
           {/* Intern 1: CodSoft (Cyber Violet Glow) */}
           <motion.a
-            href={encodeURI("/Certificates/WebD Codsoft.pdf")}
+            href={encodeURI(assetUrl("/Certificates/WebD Codsoft.pdf"))}
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ x: 6, scale: 1.01 }}
@@ -102,7 +103,7 @@ export const TechExperience: React.FC = () => {
 
           {/* Intern 2: EduSkills (Neon Sky Blue Glow) */}
           <motion.a
-            href={encodeURI("/Certificates/Eduskills Py WD.pdf")}
+            href={encodeURI(assetUrl("/Certificates/Eduskills Py WD.pdf"))}
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ x: 6, scale: 1.01 }}
@@ -185,7 +186,7 @@ export const TechExperience: React.FC = () => {
                 org: "NPTEL / IIT",
                 badge: "Advanced Vision & Diffusion",
                 desc: "Deep visual representations, diffusion models, and generative network architectures.",
-                pdf: "/Certificates/Generative AI For Computer Vision.pdf",
+                pdf: assetUrl("/Certificates/Generative AI For Computer Vision.pdf"),
                 cardBg: "bg-gradient-to-br from-[#201038]/90 via-[#130922]/95 to-[#08030f]",
                 borderColor: "border-purple-500/35 hover:border-purple-400/80",
                 shadow: "shadow-[0_8px_30px_rgba(168,85,247,0.16)] hover:shadow-[0_14px_40px_rgba(168,85,247,0.32)]",
@@ -199,7 +200,7 @@ export const TechExperience: React.FC = () => {
                 org: "NPTEL / IIT",
                 badge: "Distributed Infrastructure",
                 desc: "Cloud virtualization, scalability principles, and containerized system deployments.",
-                pdf: "/Certificates/CLOUD COMPUTING.pdf",
+                pdf: assetUrl("/Certificates/CLOUD COMPUTING.pdf"),
                 cardBg: "bg-gradient-to-br from-[#0c223d]/90 via-[#071628]/95 to-[#030b14]",
                 borderColor: "border-sky-500/35 hover:border-sky-400/80",
                 shadow: "shadow-[0_8px_30px_rgba(14,165,233,0.16)] hover:shadow-[0_14px_40px_rgba(14,165,233,0.32)]",
@@ -213,7 +214,7 @@ export const TechExperience: React.FC = () => {
                 org: "NPTEL / IIT",
                 badge: "Modeling & Statistical Analysis",
                 desc: "NumPy, Pandas, predictive modeling, regression, and statistical evaluation.",
-                pdf: "/Certificates/Data Science for Engineers.pdf",
+                pdf: assetUrl("/Certificates/Data Science for Engineers.pdf"),
                 cardBg: "bg-gradient-to-br from-[#0a261a]/90 via-[#061710]/95 to-[#020a07]",
                 borderColor: "border-emerald-500/35 hover:border-emerald-400/80",
                 shadow: "shadow-[0_8px_30px_rgba(16,185,129,0.16)] hover:shadow-[0_14px_40px_rgba(16,185,129,0.32)]",
@@ -227,7 +228,7 @@ export const TechExperience: React.FC = () => {
                 org: "NPTEL / IIT",
                 badge: "Algorithmic Problem Solving",
                 desc: "Pythonic algorithms, computational complexity, and automated scripting.",
-                pdf: "/Certificates/The Joy of Computing using Python.pdf",
+                pdf: assetUrl("/Certificates/The Joy of Computing using Python.pdf"),
                 cardBg: "bg-gradient-to-br from-[#291906]/90 via-[#1a1003]/95 to-[#0d0701]",
                 borderColor: "border-amber-500/35 hover:border-amber-400/80",
                 shadow: "shadow-[0_8px_30px_rgba(245,158,11,0.16)] hover:shadow-[0_14px_40px_rgba(245,158,11,0.32)]",

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Github, Linkedin, Download, Send, Sparkles, Check, Copy, ArrowUpRight } from "lucide-react";
 import { TRANSITION_APPLE, TRANSITION_SPRING } from "@/lib/animations";
+import { assetUrl } from "@/utils/assetUrl";
 
 export const TechContact: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -67,7 +68,7 @@ export const TechContact: React.FC = () => {
               </div>
 
               <motion.a
-                href="/My_Resume.pdf"
+                href={assetUrl("/My_Resume.pdf")}
                 download
                 whileHover={{ scale: 1.04, y: -2 }}
                 whileTap={{ scale: 0.96 }}
