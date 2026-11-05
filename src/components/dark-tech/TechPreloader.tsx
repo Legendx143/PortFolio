@@ -137,7 +137,7 @@ export const TechPreloader: React.FC<TechPreloaderProps> = ({
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xs sm:text-sm font-mono tracking-widest uppercase text-white/90 font-medium mt-1 mb-4 sm:mb-5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
+          className="text-lg sm:text-xl md:text-2xl font-mono tracking-widest uppercase text-white font-semibold mt-1 mb-5 sm:mb-6 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]"
         >
           Loading PortFolio
         </motion.p>
