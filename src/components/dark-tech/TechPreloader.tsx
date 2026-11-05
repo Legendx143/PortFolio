@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Volume2, VolumeX } from "lucide-react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
+import Loader from "@/components/ui/loader";
 import { soundEngine } from "@/utils/soundEffects";
 
 interface TechPreloaderProps {
@@ -120,13 +121,20 @@ export const TechPreloader: React.FC<TechPreloaderProps> = ({
         </button>
       </div>
 
-      {/* Center Cinematic DotLottie Animation - Perfectly Focused with No Clutter */}
-      <div className="relative z-10 flex items-center justify-center w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 drop-shadow-[0_0_45px_rgba(56,189,248,0.35)]">
-        <DotLottieReact
-          src="https://lottie.host/8cf4ba71-e5fb-44f3-8134-178c4d389417/0CCsdcgNIP.json"
-          loop
-          autoplay
-        />
+      {/* Center Cinematic DotLottie Animation with Elegant Rotating Loader Below */}
+      <div className="relative z-10 flex flex-col items-center justify-center gap-1 sm:gap-2">
+        <div className="flex items-center justify-center w-52 h-52 sm:w-64 sm:h-64 md:w-72 md:h-72 drop-shadow-[0_0_45px_rgba(56,189,248,0.35)]">
+          <DotLottieReact
+            src="https://lottie.host/8cf4ba71-e5fb-44f3-8134-178c4d389417/0CCsdcgNIP.json"
+            loop
+            autoplay
+          />
+        </div>
+
+        {/* Elegant Conic Shimmer Loader Below the Cat */}
+        <div className="-mt-3 sm:-mt-5">
+          <Loader size="sm" className="p-0 gap-0" />
+        </div>
       </div>
     </motion.div>
   );
