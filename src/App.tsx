@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import { GlobalNavbar } from "@/components/ui/GlobalNavbar";
 import { PrismaHero } from "@/components/ui/prisma-hero";
 import { NeuralCanvas } from "@/components/dark-tech/NeuralCanvas";
@@ -9,8 +10,15 @@ import { TechExperience } from "@/components/dark-tech/TechExperience";
 import { TechContact } from "@/components/dark-tech/TechContact";
 import { TechFooter } from "@/components/dark-tech/TechFooter";
 import { CustomCursor } from "@/components/dark-tech/CustomCursor";
+import { TechPreloader } from "@/components/dark-tech/TechPreloader";
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handlePreloaderComplete = () => {
+    setIsLoading(false);
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+  };
   React.useEffect(() => {
     // 1. Disable browser's automatic scroll restoration on refresh
     if ("scrollRestoration" in window.history) {
@@ -42,7 +50,15 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#0C0C0C] text-[#E1E0CC] selection:bg-[#E1E0CC] selection:text-black overflow-x-clip font-sans">
+    <>
+      {/* 3-Second Futuristic Loading Screen with Audio Chime */}
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <TechPreloader onComplete={handlePreloaderComplete} durationMs={3000} />
+        )}
+      </AnimatePresence>
+
+      <div className="relative min-h-screen bg-[#0C0C0C] text-[#E1E0CC] selection:bg-[#E1E0CC] selection:text-black overflow-x-clip font-sans">
       {/* Precision Custom Cursor */}
       <CustomCursor />
 
@@ -83,5 +99,6 @@ export default function App() {
         <TechFooter />
       </div>
     </div>
+    </>
   );
 }
