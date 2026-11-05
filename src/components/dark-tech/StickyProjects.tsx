@@ -278,7 +278,7 @@ export const StickyProjects: React.FC = () => {
           Production Systems • 02
         </div>
         <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-center font-kanit text-[3.2rem] sm:text-[5.5rem] md:text-[8rem] lg:text-[10rem] select-none">
-          Project
+          Projects
         </h2>
         <p className="mt-4 text-sm sm:text-base md:text-lg text-[#D7E2EA]/75 max-w-2xl font-light leading-relaxed font-kanit">
           Scroll down to experience the sticky-stacking architecture of production-grade computer vision, multimodal diagnostic models, and privacy-first behavioral telemetry.

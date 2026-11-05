@@ -183,13 +183,13 @@ export const JackProjectsSection: React.FC = () => {
       ref={containerRef}
       className="bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 pt-20 sm:pt-28 md:pt-36 pb-32 sm:pb-48 px-5 sm:px-8 md:px-10 max-w-7xl mx-auto font-kanit relative z-10"
     >
-      {/* Heading: "Project" */}
+      {/* Heading: "Projects" */}
       <FadeIn delay={0} y={40} className="text-center mb-16 sm:mb-24">
         <h2
           style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
           className="hero-heading font-black uppercase leading-none tracking-tight font-kanit select-none"
         >
-          Project
+          Projects
         </h2>
       </FadeIn>
 
