@@ -122,7 +122,8 @@ export const TechPreloader: React.FC<TechPreloaderProps> = ({
       </div>
 
       {/* Center Cinematic DotLottie Animation with Elegant Rotating Loader Below */}
-      <div className="relative z-10 flex flex-col items-center justify-center gap-1 sm:gap-2">
+      <div className="relative z-10 flex flex-col items-center justify-center text-center">
+        {/* Animated Cat */}
         <div className="flex items-center justify-center w-52 h-52 sm:w-64 sm:h-64 md:w-72 md:h-72 drop-shadow-[0_0_45px_rgba(56,189,248,0.35)]">
           <DotLottieReact
             src="https://lottie.host/8cf4ba71-e5fb-44f3-8134-178c4d389417/0CCsdcgNIP.json"
@@ -131,8 +132,18 @@ export const TechPreloader: React.FC<TechPreloaderProps> = ({
           />
         </div>
 
-        {/* Elegant Conic Shimmer Loader Below the Cat */}
-        <div className="-mt-3 sm:-mt-5">
+        {/* Text Below the Cat */}
+        <motion.p
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-xs sm:text-sm font-mono tracking-widest uppercase text-white/90 font-medium mt-1 mb-4 sm:mb-5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
+        >
+          Loading PortFolio
+        </motion.p>
+
+        {/* Spiral Loading Animation Dragged Down with comfortable spacing */}
+        <div className="mt-1 sm:mt-2">
           <Loader size="sm" className="p-0 gap-0" />
         </div>
       </div>
