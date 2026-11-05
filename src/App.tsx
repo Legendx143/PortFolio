@@ -7,6 +7,7 @@ import { StickyProjects } from "@/components/dark-tech/StickyProjects";
 import { TechSkills } from "@/components/dark-tech/TechSkills";
 import { TechExperience } from "@/components/dark-tech/TechExperience";
 import { TechContact } from "@/components/dark-tech/TechContact";
+import { TechFooter } from "@/components/dark-tech/TechFooter";
 import { CustomCursor } from "@/components/dark-tech/CustomCursor";
 
 export default function App() {
@@ -77,6 +78,9 @@ export default function App() {
 
         {/* 6. Communication Console / Contact */}
         <TechContact />
+
+        {/* 7. Comprehensive Silicon Valley Tech Footer */}
+        <TechFooter />
       </div>
     </div>
   );

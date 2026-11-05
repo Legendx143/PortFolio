@@ -161,12 +161,6 @@ export const TechContact: React.FC = () => {
             ))}
           </div>
         </div>
-
-        {/* Footer */}
-        <div className="mt-14 pt-8 border-t border-indigo-500/20 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-[#E1E0CC]/50">
-          <p>© {new Date().getFullYear()} Supriyo Halder. All rights reserved.</p>
-          <p>Architected with React, TypeScript, Tailwind CSS, & Framer Motion</p>
-        </div>
       </motion.div>
     </section>
   );
