@@ -155,3 +155,4 @@ const AnimatedGradientBackground: React.FC<AnimatedGradientBackgroundProps> = ({
 
 export default AnimatedGradientBackground;
 export { AnimatedGradientBackground };
+
