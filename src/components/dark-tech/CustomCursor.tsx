@@ -13,8 +13,15 @@ export const CustomCursor: React.FC = () => {
   const animFrame = useRef<number>();
 
   useEffect(() => {
-    // Only run on desktop devices with fine pointer
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    // Only run on desktop devices with fine mouse pointer
+    if (
+      typeof window === "undefined" ||
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia("(pointer: coarse)").matches
+    ) {
+      return;
+    }
 
     const handlePointerMove = (e: PointerEvent) => {
       mouse.current.x = e.clientX;

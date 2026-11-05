@@ -20,7 +20,7 @@ export const TechContact: React.FC = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={TRANSITION_APPLE}
-        className="rounded-[36px] border border-indigo-500/30 bg-gradient-to-br from-[#12102b]/95 via-[#090b18]/95 to-[#04050d] p-8 sm:p-14 md:p-18 relative overflow-hidden shadow-[0_20px_60px_rgba(99,102,241,0.18)] group hover:border-indigo-400/50 transition-all duration-300"
+        className="rounded-[36px] border border-indigo-500/30 bg-gradient-to-br from-[#12102b]/95 via-[#090b18]/95 to-[#04050d] p-8 sm:p-14 md:p-18 relative overflow-hidden shadow-[0_20px_60px_rgba(99,102,241,0.18)] group hover:border-indigo-400/50 transition-all duration-300 will-change-transform transform-gpu"
       >
         {/* Dual ambient aurora lights */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-purple-500/15 via-indigo-500/10 to-transparent rounded-full blur-[140px] pointer-events-none" />

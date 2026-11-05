@@ -117,7 +117,7 @@ const StickyCardItem: React.FC<StickyCardItemProps> = ({
           opacity: index === totalCards - 1 ? 1 : opacity,
           transformOrigin: "top center",
         }}
-        className="w-full rounded-[36px] sm:rounded-[48px] md:rounded-[56px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-5 sm:p-7 md:p-9 shadow-[0_25px_70px_rgba(0,0,0,0.95)] overflow-hidden will-change-transform font-kanit"
+        className="w-full rounded-[36px] sm:rounded-[48px] md:rounded-[56px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-5 sm:p-7 md:p-9 shadow-[0_25px_70px_rgba(0,0,0,0.95)] overflow-hidden will-change-transform transform-gpu font-kanit"
       >
         {/* Subtle Ambient Backlight inside the card */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />

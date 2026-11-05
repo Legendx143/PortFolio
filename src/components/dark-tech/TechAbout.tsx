@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { TRANSITION_SPRING } from "@/lib/animations";
 import { assetUrl } from "@/utils/assetUrl";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface CommandLog {
   id: string;
@@ -17,6 +18,7 @@ interface CommandLog {
 }
 
 export const TechAbout: React.FC = () => {
+  const isMobile = useIsMobile();
   const [inputVal, setInputVal] = useState("");
   const [history, setHistory] = useState<CommandLog[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -185,11 +187,11 @@ export const TechAbout: React.FC = () => {
             Engineering Profile • 01
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 25, filter: "blur(6px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            initial={isMobile ? { opacity: 0, y: 20 } : { opacity: 0, y: 25, filter: "blur(6px)" }}
+            whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white font-sans"
+            className="text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white font-sans transform-gpu"
           >
             Architecting Intelligent Systems
           </motion.h2>
@@ -198,7 +200,7 @@ export const TechAbout: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-3 text-sm sm:text-base text-[#E1E0CC]/70 max-w-2xl font-light leading-relaxed"
+            className="mt-3 text-sm sm:text-base text-[#E1E0CC]/70 max-w-2xl font-light leading-relaxed transform-gpu"
           >
             Computer Science undergrad bridging deep neural representations, real-time computer vision, and high-concurrency web systems.
           </motion.p>
@@ -207,11 +209,19 @@ export const TechAbout: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left: 3D Photo Display (Without Open to Hire) */}
           <motion.div
-            initial={{ opacity: 0, x: -40, rotateY: -8 }}
-            whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+            initial={
+              isMobile
+                ? { opacity: 0, y: 25 }
+                : { opacity: 0, x: -40, rotateY: -8 }
+            }
+            whileInView={
+              isMobile
+                ? { opacity: 1, y: 0 }
+                : { opacity: 1, x: 0, rotateY: 0 }
+            }
             viewport={{ once: true }}
-            transition={{ duration: 0.95, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 flex justify-center perspective-[1000px]"
+            transition={{ duration: isMobile ? 0.7 : 0.95, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 flex justify-center perspective-[1000px] will-change-transform transform-gpu"
           >
             <div className="relative w-full max-w-md rounded-3xl p-1 bg-gradient-to-b from-white/20 via-white/5 to-transparent shadow-[0_0_50px_rgba(108,68,252,0.12)] group">
               {/* Ambient backlight glow */}
@@ -254,11 +264,11 @@ export const TechAbout: React.FC = () => {
 
           {/* Right: Modern Interactive Terminal matching 002014.xyz */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, x: 40 }}
+            whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.95, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 flex flex-col gap-6"
+            transition={{ duration: isMobile ? 0.7 : 0.95, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 flex flex-col gap-6 will-change-transform transform-gpu"
           >
             {/* Terminal Window Frame */}
             <div

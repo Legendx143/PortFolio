@@ -161,3 +161,4 @@ export const TechFooter: React.FC = () => {
     </footer>
   );
 };
+

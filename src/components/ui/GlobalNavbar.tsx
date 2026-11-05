@@ -19,6 +19,8 @@ export const GlobalNavbar: React.FC<{ items?: NavItem[] }> = ({ items = defaultN
   const [activeSection, setActiveSection] = useState<string>("home");
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
       // 1. If at the top of the page, activate "home"
       if (window.scrollY < 120) {
@@ -49,10 +51,20 @@ export const GlobalNavbar: React.FC<{ items?: NavItem[] }> = ({ items = defaultN
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, [items]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavItem) => {

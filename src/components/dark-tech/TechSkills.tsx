@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cpu, Code, Server, Wrench, Terminal } from "lucide-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface SkillCategory {
   id: string;
@@ -154,6 +155,7 @@ const TABS = [
 
 export const TechSkills: React.FC = () => {
   const [activeTab, setActiveTab] = useState("all");
+  const isMobile = useIsMobile();
 
   const filteredCategories =
     activeTab === "all" ? CATEGORIES : CATEGORIES.filter((c) => c.id === activeTab);
@@ -174,21 +176,21 @@ export const TechSkills: React.FC = () => {
         </motion.div>
 
         <motion.h2
-          initial={{ opacity: 0, y: 35, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 35, filter: "blur(10px)" }}
+          whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true }}
           transition={{ duration: 0.85, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          className="text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white font-sans"
+          className="text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white font-sans transform-gpu"
         >
           Technical Arsenal
         </motion.h2>
 
         <motion.p
-          initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={isMobile ? { opacity: 0, y: 15 } : { opacity: 0, y: 20, filter: "blur(4px)" }}
+          whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true }}
           transition={{ duration: 0.85, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-3 text-sm sm:text-base text-[#E1E0CC]/70 max-w-xl font-light"
+          className="mt-3 text-sm sm:text-base text-[#E1E0CC]/70 max-w-xl font-light transform-gpu"
         >
           Battle-tested libraries, frameworks, and deployment engines used across production systems.
         </motion.p>
@@ -234,17 +236,25 @@ export const TechSkills: React.FC = () => {
             <motion.div
               layout
               key={cat.id}
-              initial={{ opacity: 0, y: 50, scale: 0.93, filter: "blur(8px)" }}
-              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-              viewport={{ once: true, amount: 0.12 }}
+              initial={
+                isMobile
+                  ? { opacity: 0, y: 35, scale: 0.96 }
+                  : { opacity: 0, y: 50, scale: 0.93, filter: "blur(8px)" }
+              }
+              whileInView={
+                isMobile
+                  ? { opacity: 1, y: 0, scale: 1 }
+                  : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }
+              }
+              viewport={{ once: true, amount: isMobile ? 0.05 : 0.12 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{
-                duration: 0.75,
-                delay: index * 0.08,
+                duration: isMobile ? 0.55 : 0.75,
+                delay: index * (isMobile ? 0.05 : 0.08),
                 ease: [0.16, 1, 0.3, 1],
               }}
               whileHover={{ y: -6, scale: 1.015 }}
-              className={`p-6 sm:p-8 rounded-3xl ${cat.cardBg} border ${cat.borderColor} ${cat.cardShadow} transition-all duration-300 flex flex-col justify-between relative overflow-hidden group`}
+              className={`p-6 sm:p-8 rounded-3xl ${cat.cardBg} border ${cat.borderColor} ${cat.cardShadow} transition-all duration-300 flex flex-col justify-between relative overflow-hidden group will-change-transform transform-gpu`}
             >
               {/* Radial ambient aura */}
               <div

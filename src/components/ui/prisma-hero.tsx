@@ -1,6 +1,7 @@
 import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
 import React, { useRef } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 /* ---------------- WordsPullUp ---------------- */
 export interface WordsPullUpProps {
@@ -72,6 +73,7 @@ export const PrismaHero: React.FC<PrismaHeroProps> = ({
   badge = null,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   // Track scroll through the hero runway (175vh)
   const { scrollYProgress } = useScroll({
@@ -79,10 +81,10 @@ export const PrismaHero: React.FC<PrismaHeroProps> = ({
     offset: ["start start", "end start"],
   });
 
-  // Smooth springs for silky fluid response
+  // Smooth springs tuned for fluid responsive touch and desktop precision
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 240,
-    damping: 28,
+    stiffness: isMobile ? 320 : 240,
+    damping: isMobile ? 36 : 28,
     restDelta: 0.001,
   });
 
@@ -121,7 +123,7 @@ export const PrismaHero: React.FC<PrismaHeroProps> = ({
         {/* Background Video with Zoom-In Physics */}
         <motion.div
           style={{ scale: videoScale }}
-          className="absolute inset-0 h-full w-full origin-center will-change-transform"
+          className="absolute inset-0 h-full w-full origin-center will-change-transform transform-gpu"
         >
           <video
             autoPlay
@@ -140,7 +142,7 @@ export const PrismaHero: React.FC<PrismaHeroProps> = ({
         />
 
         {/* Noise overlay */}
-        <div className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.7] mix-blend-overlay" />
+        <div className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.7] mix-blend-overlay hidden sm:block" />
 
         {/* Atmospheric Gradient */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#080808]" />
@@ -152,7 +154,7 @@ export const PrismaHero: React.FC<PrismaHeroProps> = ({
             opacity: portalOpacity,
             rotate: portalRotate,
           }}
-          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-72 sm:w-80 sm:h-96 rounded-[90px] border border-emerald-400/60 shadow-[0_0_120px_rgba(52,211,153,0.35)] flex items-center justify-center backdrop-blur-[2px] will-change-transform"
+          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-72 sm:w-80 sm:h-96 rounded-[90px] border border-emerald-400/60 shadow-[0_0_120px_rgba(52,211,153,0.35)] flex items-center justify-center backdrop-blur-[2px] will-change-transform transform-gpu"
         >
           <div className="w-full h-full rounded-[90px] bg-gradient-to-tr from-emerald-500/25 via-sky-500/15 to-purple-500/25 animate-pulse" />
           <div className="absolute inset-4 rounded-[75px] border border-white/20" />
@@ -165,9 +167,9 @@ export const PrismaHero: React.FC<PrismaHeroProps> = ({
             opacity: heroOpacity,
             scale: heroScale,
             y: heroY,
-            filter: heroBlur,
+            filter: isMobile ? undefined : heroBlur,
           }}
-          className="absolute bottom-0 left-0 right-0 px-6 pb-6 sm:px-10 sm:pb-8 md:px-14 lg:pb-12 max-w-[1920px] mx-auto pointer-events-auto will-change-transform"
+          className="absolute bottom-0 left-0 right-0 px-6 pb-6 sm:px-10 sm:pb-8 md:px-14 lg:pb-12 max-w-[1920px] mx-auto pointer-events-auto will-change-transform transform-gpu"
         >
           <div className="grid grid-cols-12 items-end gap-6 lg:gap-10">
             {/* Left Title: "Welcome" (large) & "To My PortFolio" (with vertical space, no asterisk) */}

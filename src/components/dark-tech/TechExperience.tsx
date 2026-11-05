@@ -11,8 +11,11 @@ import {
 } from "lucide-react";
 import { TRANSITION_SPRING } from "@/lib/animations";
 import { assetUrl } from "@/utils/assetUrl";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export const TechExperience: React.FC = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section
       id="experience"
@@ -32,21 +35,21 @@ export const TechExperience: React.FC = () => {
         </motion.div>
 
         <motion.h2
-          initial={{ opacity: 0, y: 35, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 35, filter: "blur(10px)" }}
+          whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true }}
           transition={{ duration: 0.85, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          className="text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white font-sans"
+          className="text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white font-sans transform-gpu"
         >
           Experience & Certifications
         </motion.h2>
 
         <motion.p
-          initial={{ opacity: 0, y: 22, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={isMobile ? { opacity: 0, y: 15 } : { opacity: 0, y: 22, filter: "blur(4px)" }}
+          whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true }}
           transition={{ duration: 0.85, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-3 text-sm sm:text-base text-[#E1E0CC]/70 max-w-xl font-light"
+          className="mt-3 text-sm sm:text-base text-[#E1E0CC]/70 max-w-xl font-light transform-gpu"
         >
           Structured hands-on internships and prestigious IIT/NPTEL certifications in Artificial Intelligence. Click any box to view the official certificate PDF.
         </motion.p>
@@ -55,11 +58,19 @@ export const TechExperience: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 overflow-hidden">
         {/* Left Column: Work Internships & Education (Slides in smoothly from LEFT) */}
         <motion.div
-          initial={{ opacity: 0, x: -100, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, amount: 0.12 }}
-          transition={{ duration: 1.0, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col gap-6"
+          initial={
+            isMobile
+              ? { opacity: 0, x: -36 }
+              : { opacity: 0, x: -100, filter: "blur(10px)" }
+          }
+          whileInView={
+            isMobile
+              ? { opacity: 1, x: 0 }
+              : { opacity: 1, x: 0, filter: "blur(0px)" }
+          }
+          viewport={{ once: true, amount: isMobile ? 0.05 : 0.12 }}
+          transition={{ duration: isMobile ? 0.7 : 1.0, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col gap-6 will-change-transform transform-gpu"
         >
           <div className="flex items-center gap-3 pb-3 border-b border-purple-500/20">
             <div className="p-2.5 rounded-2xl bg-purple-500/15 border border-purple-500/30 text-purple-300 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
@@ -166,11 +177,19 @@ export const TechExperience: React.FC = () => {
 
         {/* Right Column: NPTEL IIT Certifications (Slides in smoothly from RIGHT) */}
         <motion.div
-          initial={{ opacity: 0, x: 100, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, amount: 0.12 }}
-          transition={{ duration: 1.0, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col gap-6"
+          initial={
+            isMobile
+              ? { opacity: 0, x: 36 }
+              : { opacity: 0, x: 100, filter: "blur(10px)" }
+          }
+          whileInView={
+            isMobile
+              ? { opacity: 1, x: 0 }
+              : { opacity: 1, x: 0, filter: "blur(0px)" }
+          }
+          viewport={{ once: true, amount: isMobile ? 0.05 : 0.12 }}
+          transition={{ duration: isMobile ? 0.7 : 1.0, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col gap-6 will-change-transform transform-gpu"
         >
           <div className="flex items-center gap-3 pb-3 border-b border-amber-500/20">
             <div className="p-2.5 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
