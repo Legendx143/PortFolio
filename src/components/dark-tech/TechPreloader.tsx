@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Cpu, Terminal, Volume2, VolumeX, Sparkles, ShieldCheck } from "lucide-react";
+import { Volume2, VolumeX, Cpu, Sparkles } from "lucide-react";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
 import { soundEngine } from "@/utils/soundEffects";
 
 interface TechPreloaderProps {
@@ -17,7 +19,7 @@ const TELEMETRY_STEPS = [
 
 export const TechPreloader: React.FC<TechPreloaderProps> = ({
   onComplete,
-  durationMs = 3000,
+  durationMs = 5000,
 }) => {
   const [progress, setProgress] = useState(0);
   const [isMuted, setIsMuted] = useState(soundEngine.getMuted());
@@ -26,7 +28,7 @@ export const TechPreloader: React.FC<TechPreloaderProps> = ({
   const lastSoundStep = useRef<number>(-1);
   const hasFinishedRef = useRef(false);
 
-  // Resume audio context on any user interaction
+  // Resume audio context on user interaction
   const handleInteraction = () => {
     soundEngine.resume();
     if (!audioUnlockedRef.current) {
@@ -58,12 +60,15 @@ export const TechPreloader: React.FC<TechPreloaderProps> = ({
       const elapsed = now - startTime;
       const rawProgress = Math.min(1, elapsed / durationMs);
 
-      // Smooth custom ease-out curve for natural high-tech feel
-      const easedProgress = Math.min(100, Math.floor(
-        rawProgress < 0.7
-          ? Math.pow(rawProgress / 0.7, 1.1) * 78
-          : 78 + Math.pow((rawProgress - 0.7) / 0.3, 0.9) * 22
-      ));
+      // Smooth custom ease-out curve for natural high-tech feel over 5 seconds
+      const easedProgress = Math.min(
+        100,
+        Math.floor(
+          rawProgress < 0.7
+            ? Math.pow(rawProgress / 0.7, 1.1) * 78
+            : 78 + Math.pow((rawProgress - 0.7) / 0.3, 0.9) * 22
+        )
+      );
 
       setProgress((prev) => {
         const next = Math.max(prev, easedProgress);
@@ -85,7 +90,7 @@ export const TechPreloader: React.FC<TechPreloaderProps> = ({
       if (rawProgress < 1) {
         animFrame = requestAnimationFrame(updateProgress);
       } else {
-        // Finished 3-second protocol
+        // Finished 5-second protocol
         if (!hasFinishedRef.current) {
           hasFinishedRef.current = true;
           setProgress(100);
@@ -95,7 +100,7 @@ export const TechPreloader: React.FC<TechPreloaderProps> = ({
           setTimeout(() => {
             document.body.style.overflow = originalOverflow;
             onComplete();
-          }, 350);
+          }, 450);
         }
       }
     };
@@ -115,17 +120,25 @@ export const TechPreloader: React.FC<TechPreloaderProps> = ({
   return (
     <motion.div
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0, scale: 1.03, filter: "blur(6px)" }}
-      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+      exit={{ opacity: 0, scale: 1.04, filter: "blur(8px)" }}
+      transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
       onClick={handleInteraction}
       className="fixed inset-0 z-[99999] bg-[#070709] text-[#E1E0CC] flex flex-col justify-between p-6 sm:p-12 select-none overflow-hidden cursor-pointer"
     >
-      {/* Background Radial Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-purple-600/15 via-emerald-500/10 to-sky-500/15 rounded-full blur-[140px] pointer-events-none" />
+      {/* 1. Animated Radial Gradient Background with Breathing Effect */}
+      <AnimatedGradientBackground
+        startingGap={120}
+        Breathing={true}
+        animationSpeed={0.025}
+        breathingRange={6}
+        containerClassName="opacity-80"
+      />
+
+      {/* Subtle Grid Overlay for tech texture */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
 
       {/* Top Telemetry Header */}
-      <div className="relative z-10 flex items-center justify-between text-xs font-mono text-[#E1E0CC]/60">
+      <div className="relative z-10 flex items-center justify-between text-xs font-mono text-[#E1E0CC]/75">
         <div className="flex items-center gap-2.5">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -137,7 +150,7 @@ export const TechPreloader: React.FC<TechPreloaderProps> = ({
         {/* Audio Status & Toggle Button */}
         <button
           onClick={toggleSound}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-white/25 text-[#E1E0CC]/80 hover:text-white transition-all text-xs font-mono cursor-pointer"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 border border-white/15 hover:border-white/35 text-[#E1E0CC]/80 hover:text-white transition-all text-xs font-mono cursor-pointer backdrop-blur-md"
           title="Toggle audio"
         >
           {isMuted ? (
@@ -154,51 +167,33 @@ export const TechPreloader: React.FC<TechPreloaderProps> = ({
         </button>
       </div>
 
-      {/* Center Cinematic Geometric Aperture */}
+      {/* Center Cinematic Lottie Animation & Identity */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center my-auto">
-        {/* Pulsing Core Ring */}
-        <div className="relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center mb-8">
-          {/* Outer Rotating Dashed Ring */}
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-0 rounded-full border-2 border-dashed border-purple-500/35"
+        {/* Animated DotLottie Visual */}
+        <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 flex items-center justify-center mb-2 drop-shadow-[0_0_35px_rgba(56,189,248,0.35)]">
+          <DotLottieReact
+            src="https://lottie.host/8cf4ba71-e5fb-44f3-8134-178c4d389417/0CCsdcgNIP.json"
+            loop
+            autoplay
           />
-
-          {/* Inner Counter-Rotating Ring */}
-          <motion.div
-            animate={{ rotate: -360 }}
-            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-3 rounded-full border border-emerald-400/35 shadow-[0_0_30px_rgba(52,211,153,0.2)]"
-          />
-
-          {/* Center Glowing Monogram */}
-          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-purple-500/20 via-sky-500/10 to-emerald-500/20 border border-white/20 flex flex-col items-center justify-center backdrop-blur-md shadow-[0_0_35px_rgba(168,85,247,0.3)]">
-            <span className="text-xl sm:text-2xl font-black text-white font-mono tracking-wider">
-              SH
-            </span>
-            <span className="text-[9px] font-mono text-emerald-300 tracking-widest">
-              AI•CSE
-            </span>
-          </div>
         </div>
 
         {/* Title & Identity */}
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white uppercase font-sans mb-2">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white uppercase font-sans mb-1.5 drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
           Supriyo Halder
         </h1>
-        <p className="text-xs sm:text-sm font-mono text-purple-300/80 tracking-widest uppercase mb-8">
+        <p className="text-xs sm:text-sm font-mono text-purple-300 tracking-widest uppercase mb-6 drop-shadow-md">
           Applied AI Engineer & Full-Stack Developer
         </p>
 
         {/* Dynamic Telemetry Log */}
-        <div className="h-8 flex items-center justify-center">
+        <div className="h-8 flex items-center justify-center px-4 py-1 rounded-full bg-black/40 border border-white/10 backdrop-blur-md">
           <motion.p
             key={currentStep.text}
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2 }}
-            className="text-xs sm:text-sm font-mono text-[#E1E0CC]/80 flex items-center gap-2"
+            className="text-xs sm:text-sm font-mono text-[#E1E0CC]/90 flex items-center gap-2"
           >
             <span className="text-emerald-400">&gt;</span>
             <span>{currentStep.text}</span>
@@ -209,7 +204,7 @@ export const TechPreloader: React.FC<TechPreloaderProps> = ({
       {/* Bottom Progress Bar & Percentage Telemetry */}
       <div className="relative z-10 max-w-md w-full mx-auto space-y-4">
         {/* Numeric Counter & Status */}
-        <div className="flex items-center justify-between text-xs font-mono text-[#E1E0CC]/75">
+        <div className="flex items-center justify-between text-xs font-mono text-[#E1E0CC]/80">
           <span className="flex items-center gap-1.5">
             <Cpu className="w-3.5 h-3.5 text-purple-400 animate-pulse" />
             <span>CALIBRATING PORTFOLIO</span>
@@ -220,16 +215,16 @@ export const TechPreloader: React.FC<TechPreloaderProps> = ({
         </div>
 
         {/* High-Precision Progress Bar */}
-        <div className="h-2 w-full rounded-full bg-white/10 p-[1px] border border-white/15 overflow-hidden">
+        <div className="h-2.5 w-full rounded-full bg-black/50 p-[1px] border border-white/20 overflow-hidden backdrop-blur-md">
           <motion.div
-            className="h-full rounded-full bg-gradient-to-r from-emerald-400 via-sky-400 to-purple-500 shadow-[0_0_15px_rgba(52,211,153,0.5)]"
+            className="h-full rounded-full bg-gradient-to-r from-emerald-400 via-sky-400 to-purple-500 shadow-[0_0_20px_rgba(52,211,153,0.6)]"
             style={{ width: `${progress}%` }}
             transition={{ ease: "easeOut" }}
           />
         </div>
 
         {/* Micro-hint */}
-        <div className="flex items-center justify-between text-[10px] font-mono text-[#E1E0CC]/40 pt-1">
+        <div className="flex items-center justify-between text-[10px] font-mono text-[#E1E0CC]/50 pt-1">
           <span>HOOGHLY ENG. & TECH. COLLEGE</span>
           <span>
             {hasInteracted ? "AUDIO SYNCHRONIZED" : "TAP TO ENABLE AUDIO"}

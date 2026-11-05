@@ -51,10 +51,10 @@ export default function App() {
 
   return (
     <>
-      {/* 3-Second Futuristic Loading Screen with Audio Chime */}
+      {/* 5-Second Futuristic Loading Screen with Audio Chime */}
       <AnimatePresence mode="wait">
         {isLoading && (
-          <TechPreloader onComplete={handlePreloaderComplete} durationMs={3000} />
+          <TechPreloader onComplete={handlePreloaderComplete} durationMs={5000} />
         )}
       </AnimatePresence>
 
